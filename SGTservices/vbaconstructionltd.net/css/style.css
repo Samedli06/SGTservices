@@ -5155,7 +5155,6 @@ blockquote {
     float: left;
     max-width: 50%;
     padding: 15px;
-    border: 1px dashed #727272;
     margin-top: 17px;
 }
 
@@ -5198,7 +5197,21 @@ blockquote {
 @media (min-width: 992px) {
     .logo .img-responsive {
         margin: 0 auto;
+        max-height: 80px;
+        width: auto;
     }
+}
+
+/* Logo specific styling for better display */
+.logo img {
+    max-height: 80px;
+    width: auto;
+    display: block;
+}
+
+.logo .img-responsive {
+    max-height: 80px;
+    width: auto;
 }
 
 .header-widgets {
@@ -7101,11 +7114,7 @@ html.flexbox .page-box--inline .page-box__title {
     color: #333333;
 }
 
-.sidebar .widget_nav_menu ul > li.current-menu-item a {
-    background: #f3bd09;
-    color: #333333;
-    text-decoration: none;
-}
+/* Removed conflicting rule - enhanced styles are applied later */
 
 .sidebar .widget_nav_menu ul > li:first-of-type {
     margin-top: 0;
@@ -9443,10 +9452,6 @@ label.error {
     content: "";
 }
 
-.fa-file-photo-o:before, .fa-file-picture-o:before, .fa-file-image-o:before {
-    content: "";
-}
-
 .fa-file-zip-o:before, .fa-file-archive-o:before {
     content: "";
 }
@@ -10226,4 +10231,286 @@ img {
 
 #map {
     height: 400px;
+}
+
+/* Enhanced Active Menu Styles */
+.navigation--main > li.current-menu-item > a {
+    position: relative;
+    background: linear-gradient(135deg, #f7c51e 0%, #eeb908 100%);
+    color: #333333 !important;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(247, 197, 30, 0.3);
+    transform: translateY(-2px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navigation--main > li.current-menu-item > a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #f7c51e, #eeb908, #f7c51e);
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.navigation--main > li.current-menu-item > a::after {
+    content: '●';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333333;
+    font-size: 12px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+    50% { opacity: 0.7; transform: translateY(-50%) scale(1.2); }
+}
+
+/* Enhanced Sidebar Active Menu */
+.sidebar .widget_nav_menu ul > li.current-menu-item a {
+    background: linear-gradient(135deg, #f7c51e 0%, #eeb908 100%);
+    color: #333333 !important;
+    font-weight: 600;
+    border-left: 4px solid #333333;
+    border-radius: 0 6px 6px 0;
+    box-shadow: 0 2px 8px rgba(247, 197, 30, 0.3);
+    transform: translateX(3px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar .widget_nav_menu ul > li.current-menu-item a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease-in-out;
+}
+
+.sidebar .widget_nav_menu ul > li.current-menu-item a:hover::before {
+    left: 100%;
+}
+
+.sidebar .widget_nav_menu ul > li.current-menu-item a::after {
+    content: '▶';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333333;
+    font-size: 12px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.sidebar .widget_nav_menu ul > li.current-menu-item a:hover::after {
+    opacity: 1;
+    right: 8px;
+}
+
+.sidebar .widget_nav_menu ul > li.current-menu-item a:hover {
+    background: linear-gradient(135deg, #eeb908 0%, #f7c51e 100%);
+    box-shadow: 0 4px 12px rgba(238, 185, 8, 0.4);
+    transform: translateX(5px);
+}
+
+/* Mobile responsive for sidebar */
+@media (max-width: 991px) {
+    .sidebar .widget_nav_menu ul > li.current-menu-item a {
+        background: linear-gradient(135deg, #f7c51e 0%, #eeb908 100%);
+        color: #333333 !important;
+        font-weight: 600;
+        border-radius: 6px;
+        margin: 3px 0;
+        border-left: 4px solid #333333;
+        box-shadow: 0 2px 6px rgba(247, 197, 30, 0.3);
+        transform: scale(1.02);
+    }
+    
+    .sidebar .widget_nav_menu ul > li.current-menu-item a:hover {
+        background: linear-gradient(135deg, #eeb908 0%, #f7c51e 100%);
+        box-shadow: 0 3px 10px rgba(238, 185, 8, 0.4);
+        transform: scale(1.05);
+    }
+    
+    .sidebar .widget_nav_menu ul > li.current-menu-item a::after {
+        content: '●';
+        font-size: 10px;
+        opacity: 1;
+    }
+}
+
+/* Enhanced Sub-menu Active Items */
+.navigation--main .sub-menu > li.current-menu-item > a {
+    background: linear-gradient(135deg, #eeb908 0%, #f7c51e 100%);
+    color: #333333 !important;
+    font-weight: 700;
+    border-left: 3px solid #333333;
+    box-shadow: 0 2px 6px rgba(238, 185, 8, 0.3);
+    transform: translateX(3px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navigation--main .sub-menu > li.current-menu-item > a::before {
+    content: '▶';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333333;
+    font-size: 10px;
+    animation: bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(-50%); }
+    40% { transform: translateY(-60%); }
+    60% { transform: translateY(-55%); }
+}
+
+/* Hover Effects for Active Items */
+.navigation--main > li.current-menu-item > a:hover {
+    background: linear-gradient(135deg, #eeb908 0%, #f7c51e 100%);
+    box-shadow: 0 4px 12px rgba(247, 197, 30, 0.5);
+    transform: translateY(-3px);
+}
+
+.sidebar .widget_nav_menu ul > li.current-menu-item a:hover {
+    background: linear-gradient(135deg, #eeb908 0%, #f7c51e 100%);
+    box-shadow: 0 4px 12px rgba(247, 197, 30, 0.5);
+    transform: translateX(8px);
+}
+
+.navigation--main .sub-menu > li.current-menu-item > a:hover {
+    background: linear-gradient(135deg, #f7c51e 0%, #eeb908 100%);
+    box-shadow: 0 3px 8px rgba(238, 185, 8, 0.4);
+    transform: translateX(5px);
+}
+
+/* Mobile Responsive Enhancements */
+@media (max-width: 991px) {
+    .navigation--main > li.current-menu-item > a {
+        background: linear-gradient(135deg, #f7c51e 0%, #eeb908 100%);
+        color: #333333 !important;
+        font-weight: 700;
+        border-radius: 5px;
+        margin: 2px 0;
+        box-shadow: 0 2px 6px rgba(247, 197, 30, 0.3);
+    }
+    
+    .navigation--main > li.current-menu-item > a::before {
+        display: none;
+    }
+    
+    .navigation--main > li.current-menu-item > a::after {
+        content: '●';
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #333333;
+        font-size: 14px;
+    }
+}
+
+/* Focus States for Accessibility */
+.navigation--main > li.current-menu-item > a:focus,
+.sidebar .widget_nav_menu ul > li.current-menu-item a:focus,
+.navigation--main .sub-menu > li.current-menu-item > a:focus {
+    outline: 2px solid #333333;
+    outline-offset: 2px;
+}
+
+/* Smooth Transitions for All Menu Items */
+.navigation--main > li > a,
+.sidebar .widget_nav_menu ul > li > a,
+.navigation--main .sub-menu > li > a {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced Visual Feedback */
+.navigation--main > li.current-menu-item {
+    position: relative;
+}
+
+.navigation--main > li.current-menu-item::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #f7c51e, #eeb908);
+    animation: expandWidth 0.5s ease-in-out forwards;
+}
+
+@keyframes expandWidth {
+    to { width: 80%; }
+}
+
+/* Enhanced Sidebar Active Menu - High Specificity Fix */
+.sidebar .widget_nav_menu ul > li.current-menu-item a,
+.sidebar .widget_nav_menu ul > li.current-menu-item a:link,
+.sidebar .widget_nav_menu ul > li.current-menu-item a:visited {
+    background: linear-gradient(135deg, #f7c51e 0%, #eeb908 100%) !important;
+    color: #333333 !important;
+    font-weight: 600 !important;
+    border-left: 4px solid #333333 !important;
+    border-radius: 0 6px 6px 0 !important;
+    box-shadow: 0 2px 8px rgba(247, 197, 30, 0.3) !important;
+    transform: translateX(3px) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    text-decoration: none !important;
+    display: block !important;
+    padding: 8px 12px !important;
+}
+
+.sidebar .widget_nav_menu ul > li.current-menu-item a:hover,
+.sidebar .widget_nav_menu ul > li.current-menu-item a:focus {
+    background: linear-gradient(135deg, #eeb908 0%, #f7c51e 100%) !important;
+    box-shadow: 0 4px 12px rgba(238, 185, 8, 0.4) !important;
+    transform: translateX(5px) !important;
+    color: #333333 !important;
+}
+
+/* Mobile responsive for sidebar - High Specificity */
+@media (max-width: 991px) {
+    .sidebar .widget_nav_menu ul > li.current-menu-item a,
+    .sidebar .widget_nav_menu ul > li.current-menu-item a:link,
+    .sidebar .widget_nav_menu ul > li.current-menu-item a:visited {
+        background: linear-gradient(135deg, #f7c51e 0%, #eeb908 100%) !important;
+        color: #333333 !important;
+        font-weight: 600 !important;
+        border-radius: 6px !important;
+        margin: 3px 0 !important;
+        border-left: 4px solid #333333 !important;
+        box-shadow: 0 2px 6px rgba(247, 197, 30, 0.3) !important;
+        transform: scale(1.02) !important;
+        padding: 8px 12px !important;
+    }
+    
+    .sidebar .widget_nav_menu ul > li.current-menu-item a:hover {
+        background: linear-gradient(135deg, #eeb908 0%, #f7c51e 100%) !important;
+        box-shadow: 0 3px 10px rgba(238, 185, 8, 0.4) !important;
+        transform: scale(1.05) !important;
+    }
 }
