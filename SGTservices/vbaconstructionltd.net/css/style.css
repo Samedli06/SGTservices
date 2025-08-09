@@ -10128,6 +10128,14 @@ img {
     height: auto
 }
 
+/* Footer Logo Specific Styling */
+.footer .textwidget img {
+    max-width: 200px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+}
+
 .project-post {
     position: relative;
     margin-bottom: 26px !Important
