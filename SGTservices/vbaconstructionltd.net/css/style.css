@@ -5445,6 +5445,11 @@ blockquote {
     color: #1b92bf;
 }
 
+/* Adjust footer logo alignment (shift 15px left to align with heading) */
+.footer .textwidget img[src*="logo_footer.png"] {
+    margin-left: -30px;
+}
+
 .footer-bottom {
     background: #f7c51e;
     color: #666666;
